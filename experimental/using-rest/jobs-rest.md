@@ -29,8 +29,7 @@ Check that a compute cluster exists in your workspace and you have a compute clu
 
 ### Create the Code:
 
-The following assumes you've uploaded `src/hello.py` to the root directory of your default container.
-TODO: decide whether to create a new datastore and reference it here? Or mention this is the default datastore.
+The following assumes you've uploaded `src/hello.py` to the root directory of your default container. This example uses the default datastore. We will show you how to create a new datastore in the following section. 
 
 ```bash
 curl --location --request PUT 'http://https://management.azure.com
@@ -152,7 +151,7 @@ curl --location --request PUT 'http://https://management.azure.com
 
 ### Create the code container:
 
-TODO: explain upload train folder to datastore
+In this step, you can upload training code folder to the datastore. 
 
 ```bash
 curl --location --request PUT 'http://https://management.azure.com
@@ -199,6 +198,8 @@ curl --location --request PUT 'http://https://management.azure.com
 ## Sweep Jobs (Hyperparameter Tuning)
 
 A Sweep job executes a hyperparameter sweep of a specific search space for a job. The below example uses the command job from the previous section as the 'trial' job in the sweep. It sweeps over different learning rates and subsample rates for each child run. The search space parameters will be passed as arguments to the command in the trial job.
+
+Under `properties`, you can put the `jobType` as `Sweep` and specify the paramters for hyperparameter tuning. 
 
 ```bash
 curl --location --request PUT 'http://https://management.azure.com
