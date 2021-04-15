@@ -10,4 +10,3 @@
 *.mag
 *.ckpt
 *lightning_logs
-*.DS_Store
