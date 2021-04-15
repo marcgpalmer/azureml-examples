@@ -15,6 +15,7 @@ export SUBSCRIPTION_ID="<your subscription ID to create the factory>"
 export RESOURCE_GROUP="<your resource group to create the factory>"
 export WORKSPACE="<your workspace name>"
 export API_VERSION="2021-03-01-preview"
+export TOKEN="<your token here>"
 ```
 
 ## Create your first job
@@ -32,8 +33,7 @@ Check that a compute cluster exists in your workspace and you have a compute clu
 The following assumes you've uploaded `src/hello.py` to the root directory of your default container. This example uses the default datastore. We will show you how to create a new datastore in the following section. 
 
 ```bash
-curl --location --request PUT 'http://https://management.azure.com
-/mferp/managementfrontend/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/codes/hello/versions/1?api-version=$API_VERSION' \
+curl --location --request PUT 'https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/codes/hello/versions/1?api-version=$API_VERSION' \
 --header 'Authorization: Bearer $TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -48,8 +48,7 @@ curl --location --request PUT 'http://https://management.azure.com
 ### Create the Command job with the code:
 
 ```bash
-curl --location --request PUT 'http://https://management.azure.com
-/mferp/managementfrontend/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/jobs/helloWorld?api-version=$API_VERSION' \
+curl --location --request PUT 'https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/jobs/helloWorld?api-version=$API_VERSION' \
 --header 'Authorization: Bearer $TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -84,8 +83,7 @@ cd ./examples/iris/
 First we are going to define the xgboost environment we want to run.
 
 ```bash
-curl --location --request PUT 'http://https://management.azure.com
-/mferp/managementfrontend/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/environments/xgboost-environment/versions/1?api-version=$API_VERSION' \
+curl --location --request PUT 'https://management.azure.co/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/environments/xgboost-environment/versions/1?api-version=$API_VERSION' \
 --header 'Authorization: Bearer $TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -103,7 +101,7 @@ curl --location --request PUT 'http://https://management.azure.com
 Let's create a new Datastore to house the data for this experiment. We are going to create a Datastore called `localuploads`.
 
 ```bash
-curl --location --request PUT 'http://localhost:65535/mferp/managementfrontend/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/datastores/localuploads?api-version=$API_VERSION' \
+curl --location --request PUT 'https://management.azure.co/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/datastores/localuploads?api-version=$API_VERSION' \
 --header 'Authorization: Bearer $TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -135,8 +133,7 @@ The above command uploads the data from the local folder `data/` to the `localup
 ### Create the Data entity:
 
 ```bash
-curl --location --request PUT 'http://https://management.azure.com
-/mferp/managementfrontend/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/data/irisdata/versions/1?api-version=$API_VERSION' \
+curl --location --request PUT 'https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/data/irisdata/versions/1?api-version=$API_VERSION' \
 --header 'Authorization: Bearer $TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -154,8 +151,7 @@ curl --location --request PUT 'http://https://management.azure.com
 In this step, you can upload training code folder to the datastore. 
 
 ```bash
-curl --location --request PUT 'http://https://management.azure.com
-/mferp/managementfrontend/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/codes/train-xgboost/versions/1?api-version=$API_VERSION' \
+curl --location --request PUT 'https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/codes/train-xgboost/versions/1?api-version=$API_VERSION' \
 --header 'Authorization: Bearer $TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -171,8 +167,7 @@ curl --location --request PUT 'http://https://management.azure.com
 To submit the job:
 
 ```bash
-curl --location --request PUT 'http://https://management.azure.com
-/mferp/managementfrontend/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/jobs/xgboost?api-version=$API_VERSION' \
+curl --location --request PUT 'https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/jobs/xgboost?api-version=$API_VERSION' \
 --header 'Authorization: Bearer $TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -202,8 +197,7 @@ A Sweep job executes a hyperparameter sweep of a specific search space for a job
 Under `properties`, you can put the `jobType` as `Sweep` and specify the paramters for hyperparameter tuning. 
 
 ```bash
-curl --location --request PUT 'http://https://management.azure.com
-/mferp/managementfrontend/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/jobs/xgboost-sweep?api-version=$API_VERSION' \
+curl --location --request PUT 'https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/jobs/xgboost-sweep?api-version=$API_VERSION' \
 --header 'Authorization: Bearer $TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{
